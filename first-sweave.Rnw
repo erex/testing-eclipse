@@ -1,0 +1,50 @@
+% 
+\documentclass[a4paper]{article}
+\usepackage[OT1]{fontenc}
+\usepackage{Sweave}
+	\renewcommand{\familydefault}{\sfdefault}
+\begin{document}
+
+\title{This is the title}
+\author{eric}
+
+\maketitle
+%  The way to make Sweave function within Eclipse is to manually change the working directory
+%	as described in the help forum entry at 
+%	http://lists.r-forge.r-project.org/pipermail/statet-user/2008-June/000023.html
+%	use triangle in upper right corner of Console at right!!  
+%      must have an active R session before doing this, activate session is step 1
+%  Rerun on 25 Nov 2010 using StatEt 0.9.1 and all appears to work (use run
+% Sweave as task to produce resulting pdf result)
+
+This is pretty trivial really.  Think about the possibility (remote) of using Sweave with Eclipse and StatET
+for preparing the ObsEff final report (if all hangs together)
+<<label=a, fig=FALSE, echo=FALSE>>=
+	x <- seq(1:20)
+	y <- runif(20)+4
+	result <- lm(y~x)
+	summary(result)
+@
+
+For my next trick, I'll try some nesting
+
+<<label=b, fig=TRUE, echo=TRUE>>=
+nothing <- numeric(200)
+	for (i in 1:200) {
+#		if (i == 13) cat("trivia", i, "\n")
+		j <- sqrt(i)
+		z <- i^(1/3)
+		nothing[i] <- cos(z)
+		}
+	plot(seq(1:200), nothing)
+@
+% comment
+
+And we find that the coefficients are \Sexpr{round(coef(result)[1],2)} 
+not very interesting.
+
+And that is how it is, with gratuitous symbols $\delta \gamma \Leftarrow \Pi$.
+
+And that is the conclusion of the \textbf{Observer Effectiveness} report.
+
+\end{document}
